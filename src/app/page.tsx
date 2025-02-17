@@ -12,7 +12,7 @@ export default function Home() {
     <div className="h-screen flex flex-col"> 
       <Appbar/>
       
-      <div id='top' className="relative flex flex-col flex-1 px-24 overflow-y-scroll pb-8">
+      <div id='top' className="relative flex flex-col flex-1 overflow-y-scroll pb-8 mx-8 sm:mx-auto">
 
         <ActionBar/>
         

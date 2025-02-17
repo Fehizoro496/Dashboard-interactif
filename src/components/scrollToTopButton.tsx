@@ -4,7 +4,7 @@ import { ArrowUp } from 'lucide-react';
 import scrollToTop from '../utils/scrollToTop'
 
 export default function ScrollToTopButton(){
-    return  <Button onClick={scrollToTop} size="icon" className="fixed bottom-4 right-8">
+    return  <Button onClick={scrollToTop} size="icon" className="fixed bottom-4 right-4">
                 <ArrowUp />
             </Button>
 }

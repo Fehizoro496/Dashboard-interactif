@@ -3,15 +3,15 @@ import { Select,SelectContent,SelectGroup,SelectItem,SelectLabel,SelectTrigger,S
 import { Search,Filter } from "lucide-react"
 
 export default function FilterBar(){
-    return <div className="sticky top-0 bg-white flex gap-4 justify-between py-4">
-        <div className="relative flex-1 cursor-text">
+    return <div className="sticky top-0 bg-white flex gap-4 justify-between py-4 flex-wrap">
+        <div className="relative flex-1 cursor-text min-w-72">
             <label htmlFor="searchbar" className="cursor-text">
                 <Search className="absolute left-2 top-1/2 -translate-y-1/2 text-muted-foreground"/>
             </label>
-            <Input type="search" id="searchbar" className="pl-8"/>
+            <Input type="search" id="searchbar" placeholder="Search products ..." className="pl-10"/>
         </div>
 
-        <div className="relative w-72 cursor-pointer">
+        <div className="relative w-full sm:w-72 cursor-pointer">
             <Filter className="absolute left-2 top-1/2 -translate-y-1/2 text-muted-foreground cursor-pointer"/>
             
             <Select>
@@ -20,7 +20,7 @@ export default function FilterBar(){
                 </SelectTrigger>
                 <SelectContent>
                     <SelectItem value="all">All category</SelectItem>
-                    <SelectItem value="banana">Banana</SelectItem>
+                    <SelectItem value="banana">Men's clothes</SelectItem>
                 </SelectContent>
                 </Select>
  
