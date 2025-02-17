@@ -4,6 +4,7 @@ import Appbar from "@/components/appbar";
 import GridArticle from "@/components/gridArticle";
 // import Image from "next/image";
 import Article from '../types/Article';
+import ScrollToTopButton from "@/components/scrollToTopButton";
 
 export default function Home() {
 
@@ -11,7 +12,7 @@ export default function Home() {
     <div className="h-screen flex flex-col"> 
       <Appbar/>
       
-      <div className="relative flex flex-col flex-1 px-24 overflow-y-scroll pb-8">
+      <div id='top' className="relative flex flex-col flex-1 px-24 overflow-y-scroll pb-8">
 
         <ActionBar/>
         
@@ -20,6 +21,7 @@ export default function Home() {
         
         <GridArticle listArticle={articles}/>
 
+        <ScrollToTopButton/>
       
       </div>
     </div>
