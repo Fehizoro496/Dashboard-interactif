@@ -12,7 +12,7 @@ interface Action {
 
 export const useFilterStore = create<State & Action>((set)=>({
     searchQuerry:'',
-    filterCategory:'',
+    filterCategory:'all',
     setSearchQuerry:(searched: string) => set((state)=>({...state,searchQuerry:searched})),
     setFilterCategory:(filter: string) => set((state)=>({...state,filterCategory:filter})),
 }))

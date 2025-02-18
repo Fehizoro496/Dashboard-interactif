@@ -1,3 +1,4 @@
+"use client"
 // import Image from "next/image";
 import FilterBar from "@/components/filterBar";
 import GridArticle from "@/components/gridArticle";
@@ -5,6 +6,7 @@ import Article from '../types/Article';
 import { Button } from "../components/ui/button"
 import { Plus} from 'lucide-react';
 import ScrollToTopButton from "@/components/scrollToTopButton";
+import { useListArticleStore } from "@/stores/listArticleStore";
 
 export default function Home() {
 
@@ -21,9 +23,9 @@ export default function Home() {
             </Button>
         </div>
         
-        <FilterBar categories={categories}/>
+        <FilterBar/>
         
-        <GridArticle listArticle={articles}/>
+        <GridArticle />
 
         <ScrollToTopButton/>
       
@@ -31,19 +33,3 @@ export default function Home() {
     </div>
   );
 }
-
-let articles:Article[] = [
-  {nom:'article 1',categorie:'cat A'},
-  {nom:'article 2',categorie:'cat B'},
-  {nom:'article 3',categorie:'cat B'},
-  {nom:'article 4',categorie:'cat A'},
-  {nom:'article 5',categorie:'cat B'},
-  {nom:'article 6',categorie:'cat A'},
-  {nom:'article 7',categorie:'cat B'},
-  {nom:'article 8',categorie:'cat A'},
-  {nom:'article 9',categorie:'cat A'},
-  {nom:'article 10',categorie:'cat A'},
-  {nom:'article 11',categorie:'cat B'},
-]
-
-let categories:string[] = Array.from(new Set(articles.map(el=>el.categorie)))
