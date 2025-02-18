@@ -1,3 +1,4 @@
 export default interface Article {
-    nom:string
+    nom:string,
+    categorie:string
 }
