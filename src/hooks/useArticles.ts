@@ -4,7 +4,11 @@ import { fetchArticles, addArticle, updateArticle, deleteArticle } from "@/servi
 export const useArticles = () => {
   const queryClient = useQueryClient();
 
-  const { data: articles, isLoading, error } = useQuery({ queryKey: ["products"], queryFn: fetchArticles ,staleTime:1000*60*5});
+  const { data: articles, isLoading, error } = useQuery({ 
+    queryKey: ["products"], 
+    queryFn: fetchArticles,
+    staleTime: 1000 * 60 * 5, // 5 minutes
+  });
 
   const addMutation = useMutation({ mutationFn:addArticle,
     onSuccess: () => queryClient.invalidateQueries({queryKey:["products"]}),
