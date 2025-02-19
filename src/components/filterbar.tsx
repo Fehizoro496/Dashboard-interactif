@@ -15,7 +15,7 @@ export default function FilterBar(){
     
     function handleSearchChange(e:React.ChangeEvent<HTMLInputElement>) { setSearchQuerry(e.target.value) }
 
-    return <div className="sticky top-0 flex gap-4 justify-between py-4 flex-wrap bg-white">
+    return <div className="z-50 sticky top-0 flex gap-4 justify-between py-4 flex-wrap bg-white">
         <div className="relative flex-1 cursor-text sm:min-w-72 ">
             <label htmlFor="searchbar" className="cursor-text">
                 <Search className="absolute left-2 top-1/2 -translate-y-1/2 text-muted-foreground"/>
