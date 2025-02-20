@@ -35,7 +35,8 @@ const AddArticleModal = () => {
         //TODO send data to the API then update listArticle in the store
         addMutation.mutate(data, {
             onSuccess: (returnedData:Article) => {
-              addArticle({...returnedData,id:listArticles.length});
+              addArticle({...returnedData,id:listArticles.length+1});
+              console.log(listArticles)
               toogleIsOpen();
               reset();
             },
@@ -50,30 +51,30 @@ const AddArticleModal = () => {
                     <DialogDescription/>
                 </DialogHeader>
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-                    <div className="space-y-2">
+                    <div className="space-y-1">
                         <Label htmlFor="title">Title</Label>
                         <Input id="title" {...register('title')} required />
-                        {errors.title && <p className="text-red-500">{errors.title.message}</p>}
+                        {errors.title && <p className="text-red-500 text-sm">{errors.title.message}</p>}
                     </div>
-                    <div className="space-y-2">
+                    <div className="space-y-1">
                         <Label htmlFor="price">Price</Label>
                         <Input id="price" type="number" {...register('price', { valueAsNumber: true })} required />
-                        {errors.price && <p className="text-red-500">{errors.price.message}</p>}
+                        {errors.price && <p className="text-red-500 text-sm">{errors.price.message}</p>}
                     </div>
-                    <div className="space-y-2">
+                    <div className="space-y-1">
                         <Label htmlFor="category">Category</Label>
                         <Input id="category" {...register('category')} required />
-                        {errors.category && <p className="text-red-500">{errors.category.message}</p>}
+                        {errors.category && <p className="text-red-500 text-sm">{errors.category.message}</p>}
                     </div>
-                    <div className="space-y-2">
+                    <div className="space-y-1">
                         <Label htmlFor="image">Image URL</Label>
                         <Input id="image" {...register('image')} required />
-                        {errors.image && <p className="text-red-500">{errors.image.message}</p>}
+                        {errors.image && <p className="text-red-500 text-sm">{errors.image.message}</p>}
                     </div>
-                    <div className="space-y-2">
+                    <div className="space-y-1">
                         <Label htmlFor="description">Description</Label>
                         <Textarea id="description" {...register('description')} required />
-                        {errors.description && <p className="text-red-500">{errors.description.message}</p>}
+                        {errors.description && <p className="text-red-500 text-xs">{errors.description.message}</p>}
                     </div>
                     <div className="flex justify-end gap-2">
                         <Button type="button" variant="outline" onClick={toogleIsOpen}>
