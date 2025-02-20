@@ -8,5 +8,13 @@ export default interface Article {
     rating:{
         rate:number,
         count:number
-    }
+    }|null
+}
+
+export type ArticleFormData = {
+    title:string,
+    price:number,
+    description:string,
+    category:string,
+    image:string,
 }

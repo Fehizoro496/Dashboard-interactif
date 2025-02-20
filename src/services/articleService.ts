@@ -1,4 +1,4 @@
-import Article from "@/types/Article";
+import Article, {ArticleFormData} from "@/types/Article";
 import axios from "axios";
 
 const API_URL = "https://fakestoreapi.com/products";
@@ -8,7 +8,7 @@ export const fetchArticles = async () => {
   return response.data;
 };
 
-export const addArticle = async (article: Article) => {
+export const addArticle = async (article: ArticleFormData) => {
   const response = await axios.post(API_URL, article);
   return response.data;
 };

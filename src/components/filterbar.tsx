@@ -9,7 +9,7 @@ export default function FilterBar(){
 
     const {listArticles} = useListArticleStore()
 
-    let listCategory:string[] = Array.from(new Set(listArticles.map(el=>el.category)))
+    let listCategory:string[] = Array.from(new Set(listArticles?.map(el=>el.category)))
 
     const {searchQuerry,filterCategory,setFilterCategory,setSearchQuerry} = useFilterStore()
     
