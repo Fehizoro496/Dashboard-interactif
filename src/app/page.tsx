@@ -15,6 +15,7 @@ import AddArticleModal from "@/components/addModal";
 import { useAddModalStore } from "@/stores/addModalStore";
 import { useListArticleStore } from "@/stores/listArticleStore";
 import { useArticles } from "@/hooks/useArticles";
+import ArticleDetailsDialog from "@/components/articleDetail";
 
 const queryClient = new QueryClient()
 
@@ -43,6 +44,8 @@ export default function Home() {
           <ScrollToTopButton/>
 
           <AddArticleModal/>
+
+          <ArticleDetailsDialog/>
 
         </div>
       </div>

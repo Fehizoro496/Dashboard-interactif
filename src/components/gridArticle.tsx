@@ -5,15 +5,14 @@ import { useListArticleStore } from '@/stores/listArticleStore'
 import { useArticles } from '@/hooks/useArticles'
 import Article from '@/types/Article'
 import { useEffect } from 'react'
+import { useDetailDialogStore } from '@/stores/detailDialogStore'
 
 export default function GridArticle () {
 
-  
   const { articles, isLoading, error} = useArticles();
-  
   const {searchQuerry,filterCategory} = useFilterStore()
-  
   const {listArticles, setListArticles} = useListArticleStore()
+  const {setArticleDetail,toogleIsDetailDialogOpen} = useDetailDialogStore()
   
   useEffect(() => {
     setListArticles(articles)
@@ -29,6 +28,13 @@ export default function GridArticle () {
       (filterCategory==="all" || article.category === filterCategory))
 
   return (<div className='flex-1 grid gap-4 place-items-center grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4'>
-          {filteredArticle?.map((el:Article)=>ArticleCard(el))}
+          {filteredArticle?.map((el:Article) => 
+            <ArticleCard
+              key={el.id}
+              article={el} 
+              setArticleDetail={setArticleDetail}
+              toogleIsDetailDialogOpen={toogleIsDetailDialogOpen}
+            />
+          )}
         </div>)
 }
