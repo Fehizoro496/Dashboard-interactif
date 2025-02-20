@@ -8,12 +8,12 @@ interface State {
 
 interface Action {
     toogleIsDetailDialogOpen:()=>void,
-    setArticleDetail:(article:Article)=>void,
+    setArticleDetail:(article:Article|undefined)=>void,
 }
 
 export const useDetailDialogStore = create<State & Action>((set)=>({
     isDetailDialogOpen:false,
     article:undefined,
     toogleIsDetailDialogOpen:() => set((state)=>({...state,isDetailDialogOpen : !state.isDetailDialogOpen})),
-    setArticleDetail:(article:Article) => set((state)=>({...state,article : article})),
+    setArticleDetail:(article:Article|undefined) => set((state)=>({...state,article : article})),
 }))

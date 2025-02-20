@@ -11,10 +11,15 @@ import { useDetailDialogStore } from "@/stores/detailDialogStore";
 
   const ArticleDetailsDialog = () => {
 
-    const {isDetailDialogOpen,toogleIsDetailDialogOpen,article} = useDetailDialogStore()
+    const {isDetailDialogOpen,toogleIsDetailDialogOpen,article,setArticleDetail} = useDetailDialogStore()
+
+    const handleClose = ()=>{
+        toogleIsDetailDialogOpen()
+        setArticleDetail(undefined)
+    }
 
     return (
-      <Dialog open={isDetailDialogOpen} onOpenChange={toogleIsDetailDialogOpen}>
+      <Dialog open={isDetailDialogOpen} onOpenChange={handleClose}>
         <DialogContent className="sm:max-w-[600px]">
           <DialogHeader>
             <DialogTitle>{article?.title}</DialogTitle>
