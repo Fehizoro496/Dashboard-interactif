@@ -7,7 +7,6 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import Article, { ArticleFormData } from "@/types/Article";
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { useAddModalStore } from '@/stores/addModalStore';
 import { useArticles } from '@/hooks/useArticles';
 import { useListArticleStore } from '@/stores/listArticleStore';
 import { DialogDescription } from '@radix-ui/react-dialog';
@@ -22,23 +21,32 @@ const articleSchema = z.object({
 });
 
 const UpdateArticleModal = () => {
+
+    const {selectedArticle,isDialogOpen,clearState,typeDialog,toogleIsDialogOpen} = useDialogStore()
+    
+    const initialValue:ArticleFormData={
+        title : selectedArticle?selectedArticle.title:'',
+        description : selectedArticle?selectedArticle.description:'',
+        category : selectedArticle?selectedArticle.category:'',
+        image : selectedArticle?selectedArticle.image:'',
+        price : selectedArticle?selectedArticle.price:0,
+    }
     const { register, handleSubmit, formState: { errors } ,reset} = useForm<ArticleFormData>({
         resolver: zodResolver(articleSchema),
+        values: initialValue
     });
 
     const {updateArticle,listArticles} = useListArticleStore()
 
     const {updateMutation} = useArticles()
-
-    const {selectedArticle,isDialogOpen,clearState,typeDialog,toogleIsDialogOpen} = useDialogStore()
     
     const handleClose=()=>{
         toogleIsDialogOpen();
         clearState();
+        reset();
     }
 
     const onSubmit: SubmitHandler<ArticleFormData> = (data) => {
-        //TODO send data to the API then update listArticle in the store
         if (selectedArticle){
                 updateMutation.mutate({
                     ...data, id: selectedArticle.id,
@@ -49,7 +57,6 @@ const UpdateArticleModal = () => {
                 updateArticle(returnedData)
                 console.log(listArticles)
                 handleClose();
-                reset();
                 },
             });
         }
@@ -70,7 +77,7 @@ const UpdateArticleModal = () => {
                     </div>
                     <div className="space-y-1">
                         <Label htmlFor="price">Price</Label>
-                        <Input id="price" type="number" {...register('price', { valueAsNumber: true })} required />
+                        <Input id="price" type="number" step={0.01} {...register('price', { valueAsNumber: true })} required />
                         {errors.price && <p className="text-red-500 text-sm">{errors.price.message}</p>}
                     </div>
                     <div className="space-y-1">
