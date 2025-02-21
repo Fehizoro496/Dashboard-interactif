@@ -11,7 +11,7 @@ interface ArticleCardProps {
 
 export default function ArticleCard({article}:ArticleCardProps){
     
-    const {isDialogOpen,toogleIsDialogOpen,setDialogType,selectedArticle,clearState,setSelectedArticle,typeDialog} = useDialogStore()
+    const {toogleIsDialogOpen,setDialogType,setSelectedArticle} = useDialogStore()
 
     const handleClick = ()=>{
         setSelectedArticle(article)
@@ -48,7 +48,7 @@ export default function ArticleCard({article}:ArticleCardProps){
                     <Button
                         variant="outline"
                         size="icon"
-                        onClick={() => {}}
+                        onClick={()=>setDialogType("modify")}
                     >
                         <Edit className="h-4 w-4" />
                     </Button>

@@ -17,6 +17,7 @@ import { useListArticleStore } from "@/stores/listArticleStore";
 import { useArticles } from "@/hooks/useArticles";
 import ArticleDetailsDialog from "@/components/articleDetail";
 import DeleteConfirmDialog from "@/components/deleteConfirmDialog";
+import UpdateArticleModal from "@/components/updateModal";
 
 const queryClient = new QueryClient()
 
@@ -48,6 +49,7 @@ export default function Home() {
 
           <ArticleDetailsDialog/>
           <DeleteConfirmDialog/>
+          <UpdateArticleModal/>
 
         </div>
       </div>

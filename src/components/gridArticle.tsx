@@ -9,8 +9,8 @@ import { useEffect } from 'react'
 export default function GridArticle () {
 
   const { articles, isLoading, error} = useArticles();
-  const {searchQuerry,filterCategory} = useFilterStore()
-  const {listArticles, setListArticles} = useListArticleStore()
+  const {searchQuerry,filterCategory} = useFilterStore();
+  const {listArticles, setListArticles} = useListArticleStore();
   
   useEffect(() => {
     setListArticles(articles)
