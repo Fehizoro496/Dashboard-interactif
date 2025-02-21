@@ -16,16 +16,16 @@ interface Action {
     clearState:()=>void
 }
 
-const intialState = {
-    isOpen:false,
-    selectedArticle:undefined,
-    typeDialog:undefined,
+const intialState: State = {
+    isDialogOpen: false,
+    selectedArticle: undefined,
+    typeDialog: "detail",
 }
 
 export const useDialogStore = create<State & Action>((set)=>({
     isDialogOpen:false,
     selectedArticle:undefined,
-    typeDialog:undefined,
+    typeDialog:"detail",
     toogleIsDialogOpen:() => set((state)=>({isDialogOpen : !state.isDialogOpen})),
     setSelectedArticle:(article:Article) => set((state)=>({selectedArticle:article})),
     setDialogType:(dialogType:DialogType) => set((state)=>({typeDialog:dialogType})),

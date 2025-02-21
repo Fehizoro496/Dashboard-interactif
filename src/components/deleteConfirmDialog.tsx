@@ -1,4 +1,3 @@
-import { useDeleteDialogStore } from "@/stores/deleteDialogStore";
 import {
     AlertDialog,
     AlertDialogAction,
@@ -12,33 +11,40 @@ import {
 import Article from "@/types/Article";
 import { useArticles } from "@/hooks/useArticles";
 import { useListArticleStore } from "@/stores/listArticleStore";
+import { useDialogStore } from "@/stores/dialogStore";
 
   const DeleteConfirmDialog = () => {
 
-    const {isDeleteDialogOpen,toogleDeleteDialogIsOpen,articleToDelete} = useDeleteDialogStore()
+    const {isDialogOpen,toogleIsDialogOpen,selectedArticle,setSelectedArticle,typeDialog,setDialogType,clearState} = useDialogStore()
     const {deleteMutation} = useArticles()
-    const {deleteArticle,listArticles} = useListArticleStore()
-    // setArticleToDelete(article?)
+    const {deleteArticleFromList,listArticles} = useListArticleStore()
 
     const handleDelete = ()=>{
-        if (articleToDelete) {
-            deleteMutation.mutate(articleToDelete, {
+        if (selectedArticle) {
+            deleteMutation.mutate(selectedArticle, {
                 onSuccess: (data:void, variables:Article, context:unknown) => {
-                    deleteArticle(variables);
-                    console.log(listArticles);
-                    toogleDeleteDialogIsOpen();
+                  console.log(variables);
+                  deleteArticleFromList(variables);
+                  console.log(listArticles);
+                  toogleIsDialogOpen();
+                  clearState();
                 },
             });
         }
     }
 
+    const handleClose = ()=>{
+      toogleIsDialogOpen()
+      clearState()
+    }
+
     return (
-      <AlertDialog open={isDeleteDialogOpen} onOpenChange={toogleDeleteDialogIsOpen}>
+      <AlertDialog open={(isDialogOpen && typeDialog==="delete")} onOpenChange={handleClose}>
         <AlertDialogContent>
           <AlertDialogHeader>
             <AlertDialogTitle>Delete Product</AlertDialogTitle>
             <AlertDialogDescription>
-              Are you sure you want to delete "{articleToDelete?.title}"? 
+              Are you sure you want to delete <span className="font-bold">"{selectedArticle?.title}"</span> ? 
               <br />
               This action cannot be undone.
             </AlertDialogDescription>

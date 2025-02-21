@@ -27,7 +27,7 @@ const AddArticleModal = () => {
 
     const { isOpen, toogleIsOpen } = useAddModalStore();
 
-    const {addArticle,listArticles} = useListArticleStore()
+    const {addArticleToList,listArticles} = useListArticleStore()
 
     const {addMutation} = useArticles()
 
@@ -35,7 +35,7 @@ const AddArticleModal = () => {
         //TODO send data to the API then update listArticle in the store
         addMutation.mutate(data, {
             onSuccess: (returnedData:Article) => {
-              addArticle({...returnedData,id:listArticles.length+1});
+              addArticleToList({...returnedData,id:listArticles.length+1});
               console.log(listArticles)
               toogleIsOpen();
               reset();

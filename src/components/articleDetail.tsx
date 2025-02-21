@@ -5,14 +5,12 @@ import {
     DialogHeader,
     DialogTitle,
   } from "@/components/ui/dialog";
-import { useDetailDialogStore } from "@/stores/detailDialogStore";
 import { useDialogStore } from "@/stores/dialogStore";
   import Article from "@/types/Article";
 
 
   const ArticleDetailsDialog = () => {
 
-    // const {isDetailDialogOpen,toogleIsDetailDialogOpen,article,setArticleDetail} = useDetailDialogStore()
     const {isDialogOpen,toogleIsDialogOpen,selectedArticle,setSelectedArticle,typeDialog,setDialogType,clearState} = useDialogStore()
 
     const handleClose = ()=>{
