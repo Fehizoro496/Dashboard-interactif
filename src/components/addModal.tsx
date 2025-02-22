@@ -13,6 +13,7 @@ import { useListArticleStore } from '@/stores/listArticleStore';
 import { DialogDescription } from '@radix-ui/react-dialog';
 import { useFilterStore } from '@/stores/filterStore';
 import Image from "next/image";
+import { toast } from 'sonner';
 
 const articleSchema = z.object({
     title: z.string().min(1, 'Title is required'),
@@ -40,14 +41,15 @@ const AddArticleModal = () => {
 
     const onSubmit: SubmitHandler<ArticleFormData> = (data) => {
         addMutation.mutate(data, {
-            onSuccess: (returnedData:Article) => {
-              addArticleToList({...returnedData,id:listArticles.length+1});
-              console.log(listArticles)
-              resetFilter()
-              toogleIsOpen();
-              reset();
+            onSuccess: (returnedData: Article) => {
+                addArticleToList({ ...returnedData, id: listArticles.length + 1 });
+                console.log(listArticles);
+                resetFilter();
+                toogleIsOpen();
+                reset();
+                toast.success('Article added successfully!');
             },
-          });
+        });
     };
 
     return (

@@ -13,6 +13,7 @@ import { useAddModalStore } from "@/stores/addModalStore";
 import ArticleDetailsDialog from "@/components/articleDetail";
 import DeleteConfirmDialog from "@/components/deleteConfirmDialog";
 import UpdateArticleModal from "@/components/updateModal";
+import { Toaster } from "sonner";
 
 const queryClient = new QueryClient()
 
@@ -45,6 +46,8 @@ export default function Home() {
           <ArticleDetailsDialog/>
           <DeleteConfirmDialog/>
           <UpdateArticleModal/>
+
+          <Toaster/>
 
         </div>
       </div>

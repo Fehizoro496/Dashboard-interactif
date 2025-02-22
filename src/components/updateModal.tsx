@@ -12,6 +12,7 @@ import { useListArticleStore } from '@/stores/listArticleStore';
 import { DialogDescription } from '@radix-ui/react-dialog';
 import { useDialogStore } from '@/stores/dialogStore';
 import Image from "next/image";
+import { toast } from 'sonner';
 
 const articleSchema = z.object({
     title: z.string().min(1, 'Title is required'),
@@ -61,6 +62,8 @@ const UpdateArticleModal = () => {
                 updateArticle(returnedData)
                 console.log(listArticles)
                 handleClose();
+                // Show success notification
+                toast.success('Article updated successfully');
                 },
             });
         }

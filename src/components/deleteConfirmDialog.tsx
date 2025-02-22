@@ -12,6 +12,7 @@ import Article from "@/types/Article";
 import { useArticles } from "@/hooks/useArticles";
 import { useListArticleStore } from "@/stores/listArticleStore";
 import { useDialogStore } from "@/stores/dialogStore";
+import { toast } from "sonner";
 
   const DeleteConfirmDialog = () => {
 
@@ -19,18 +20,20 @@ import { useDialogStore } from "@/stores/dialogStore";
     const {deleteMutation} = useArticles()
     const {deleteArticleFromList,listArticles} = useListArticleStore()
 
-    const handleDelete = ()=>{
-        if (selectedArticle) {
-            deleteMutation.mutate(selectedArticle, {
-                onSuccess: (data:void, variables:Article, context:unknown) => {
-                  console.log(variables);
-                  deleteArticleFromList(variables);
-                  console.log(listArticles);
-                  toogleIsDialogOpen();
-                  clearState();
-                },
-            });
-        }
+    const handleDelete = () => {
+      if (selectedArticle) {
+        deleteMutation.mutate(selectedArticle, {
+          onSuccess: (data: void, variables: Article, context: unknown) => {
+            console.log(variables);
+            deleteArticleFromList(variables);
+            console.log(listArticles);
+            toogleIsDialogOpen();
+            clearState();
+            // Add toast notification
+            toast.success(`"${variables.title}" has been deleted successfully.`);
+          },
+        });
+      }
     }
 
     const handleClose = ()=>{
