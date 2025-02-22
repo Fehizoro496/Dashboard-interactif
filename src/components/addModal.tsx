@@ -12,6 +12,7 @@ import { useArticles } from '@/hooks/useArticles';
 import { useListArticleStore } from '@/stores/listArticleStore';
 import { DialogDescription } from '@radix-ui/react-dialog';
 import { useFilterStore } from '@/stores/filterStore';
+import Image from "next/image";
 
 const articleSchema = z.object({
     title: z.string().min(1, 'Title is required'),
@@ -22,9 +23,12 @@ const articleSchema = z.object({
 });
 
 const AddArticleModal = () => {
-    const { register, handleSubmit, formState: { errors } ,reset} = useForm<ArticleFormData>({
+    const { register, handleSubmit, formState: { errors }, reset, watch } = useForm<ArticleFormData>({
         resolver: zodResolver(articleSchema),
     });
+
+    // Watch the image field for changes
+    const imageUrl = watch('image');
 
     const { isOpen, toogleIsOpen } = useAddModalStore();
 
@@ -35,7 +39,6 @@ const AddArticleModal = () => {
     const {addMutation} = useArticles()
 
     const onSubmit: SubmitHandler<ArticleFormData> = (data) => {
-        //TODO send data to the API then update listArticle in the store
         addMutation.mutate(data, {
             onSuccess: (returnedData:Article) => {
               addArticleToList({...returnedData,id:listArticles.length+1});
@@ -70,10 +73,23 @@ const AddArticleModal = () => {
                         <Input id="category" {...register('category')} required />
                         {errors.category && <p className="text-red-500 text-sm">{errors.category.message}</p>}
                     </div>
-                    <div className="space-y-1">
-                        <Label htmlFor="image">Image URL</Label>
-                        <Input id="image" {...register('image')} required />
-                        {errors.image && <p className="text-red-500 text-sm">{errors.image.message}</p>}
+                    <div className="grid grid-cols-2 gap-4">
+                        <div className="space-y-1">
+                            <Label htmlFor="image">Image URL</Label>
+                            <Input id="image" {...register('image')} required />
+                            {errors.image && <p className="text-red-500 text-sm">{errors.image.message}</p>}
+                        </div>
+                        {imageUrl && (
+                            <div className="relative aspect-square">
+                                <Image 
+                                    src={imageUrl}
+                                    alt="Preview"
+                                    fill
+                                    className="object-contain"
+                                    unoptimized
+                                />
+                            </div>
+                        )}
                     </div>
                     <div className="space-y-1">
                         <Label htmlFor="description">Description</Label>

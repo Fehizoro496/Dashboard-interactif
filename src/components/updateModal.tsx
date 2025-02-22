@@ -11,6 +11,7 @@ import { useArticles } from '@/hooks/useArticles';
 import { useListArticleStore } from '@/stores/listArticleStore';
 import { DialogDescription } from '@radix-ui/react-dialog';
 import { useDialogStore } from '@/stores/dialogStore';
+import Image from "next/image";
 
 const articleSchema = z.object({
     title: z.string().min(1, 'Title is required'),
@@ -31,10 +32,13 @@ const UpdateArticleModal = () => {
         image : selectedArticle?selectedArticle.image:'',
         price : selectedArticle?selectedArticle.price:0,
     }
-    const { register, handleSubmit, formState: { errors } ,reset} = useForm<ArticleFormData>({
+    const { register, handleSubmit, formState: { errors } ,reset, watch} = useForm<ArticleFormData>({
         resolver: zodResolver(articleSchema),
         values: initialValue
     });
+
+    // Watch the image field for changes
+    const imageUrl = watch('image');
 
     const {updateArticle,listArticles} = useListArticleStore()
 
@@ -85,10 +89,23 @@ const UpdateArticleModal = () => {
                         <Input id="category" {...register('category')} required />
                         {errors.category && <p className="text-red-500 text-sm">{errors.category.message}</p>}
                     </div>
-                    <div className="space-y-1">
-                        <Label htmlFor="image">Image URL</Label>
-                        <Input id="image" {...register('image')} required />
-                        {errors.image && <p className="text-red-500 text-sm">{errors.image.message}</p>}
+                    <div className="grid grid-cols-2 gap-4">
+                        <div className="space-y-1">
+                            <Label htmlFor="image">Image URL</Label>
+                            <Input id="image" {...register('image')} required />
+                            {errors.image && <p className="text-red-500 text-sm">{errors.image.message}</p>}
+                        </div>
+                        {imageUrl && (
+                            <div className="relative aspect-square">
+                                <Image 
+                                    src={imageUrl}
+                                    alt="Preview"
+                                    fill
+                                    className="object-contain"
+                                    unoptimized
+                                />
+                            </div>
+                        )}
                     </div>
                     <div className="space-y-1">
                         <Label htmlFor="description">Description</Label>

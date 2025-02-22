@@ -1,20 +1,15 @@
 "use client"
-// import Image from "next/image";
 import FilterBar from "@/components/filterBar";
 import GridArticle from "@/components/gridArticle";
-// import Article from '../types/Article';
 import { Button } from "../components/ui/button"
 import { Plus} from 'lucide-react';
 import ScrollToTopButton from "@/components/scrollToTopButton";
-// import { useListArticleStore } from "@/stores/listArticleStore";
 import {
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query'
 import AddArticleModal from "@/components/addModal";
 import { useAddModalStore } from "@/stores/addModalStore";
-import { useListArticleStore } from "@/stores/listArticleStore";
-import { useArticles } from "@/hooks/useArticles";
 import ArticleDetailsDialog from "@/components/articleDetail";
 import DeleteConfirmDialog from "@/components/deleteConfirmDialog";
 import UpdateArticleModal from "@/components/updateModal";
