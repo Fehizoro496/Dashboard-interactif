@@ -31,6 +31,7 @@ export default function ArticleCard({article}:ArticleCardProps){
                         height: '100%',
                         objectFit: 'contain'
                     }} 
+                    priority
                 className="scale-75"/>
                 <div className="absolute text-xs top-2 left-2 bg-primary/35 font-bold px-2 py-1 rounded-sm text-primary-foreground">{article.category}</div>
             </div>

@@ -6,11 +6,12 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import Article, { ArticleFormData } from "@/types/Article";
-import { useForm, SubmitHandler } from 'react-hook-form';
+import { useForm, SubmitHandler, set } from 'react-hook-form';
 import { useAddModalStore } from '@/stores/addModalStore';
 import { useArticles } from '@/hooks/useArticles';
 import { useListArticleStore } from '@/stores/listArticleStore';
 import { DialogDescription } from '@radix-ui/react-dialog';
+import { useFilterStore } from '@/stores/filterStore';
 
 const articleSchema = z.object({
     title: z.string().min(1, 'Title is required'),
@@ -29,6 +30,8 @@ const AddArticleModal = () => {
 
     const {addArticleToList,listArticles} = useListArticleStore()
 
+    const {resetFilter} = useFilterStore()
+
     const {addMutation} = useArticles()
 
     const onSubmit: SubmitHandler<ArticleFormData> = (data) => {
@@ -37,6 +40,7 @@ const AddArticleModal = () => {
             onSuccess: (returnedData:Article) => {
               addArticleToList({...returnedData,id:listArticles.length+1});
               console.log(listArticles)
+              resetFilter()
               toogleIsOpen();
               reset();
             },

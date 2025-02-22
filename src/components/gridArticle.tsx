@@ -26,7 +26,7 @@ export default function GridArticle () {
       (filterCategory==="all" || article.category === filterCategory))
 
   return (<div className='flex-1 grid gap-4 place-items-center grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4'>
-          {filteredArticle?.map((el:Article) => 
+          {filteredArticle?.reverse().map((el:Article) => 
             <ArticleCard
               key={el.id}
               article={el}
