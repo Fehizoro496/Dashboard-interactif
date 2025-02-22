@@ -13,6 +13,7 @@ import { DialogDescription } from '@radix-ui/react-dialog';
 import { useDialogStore } from '@/stores/dialogStore';
 import Image from "next/image";
 import { toast } from 'sonner';
+import { ImagePlaceholder } from "./ui/imagePlaceholder";
 
 const articleSchema = z.object({
     title: z.string().min(1, 'Title is required'),
@@ -77,17 +78,19 @@ const UpdateArticleModal = () => {
             </DialogHeader>
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                 <div className="flex flex-col sm:grid sm:grid-cols-3 sm:gap-4 sm:items-center max-h-[450px] overflow-y-scroll md:max-h-full">
-                    {imageUrl && (
-                        <div className="relative aspect-square col-span-1">
-                        <Image 
-                            src={imageUrl}
-                            alt="Preview"
-                            fill
-                            className="object-contain"
-                            unoptimized
-                        />
-                        </div>
-                    )}
+                    <div className="relative aspect-square col-span-1">
+                        {imageUrl ? (
+                            <Image 
+                                src={imageUrl}
+                                alt="Preview"
+                                fill
+                                className="object-contain"
+                                unoptimized
+                            />
+                        ) : (
+                            <ImagePlaceholder />
+                        )}
+                    </div>
                 <div className="space-y-4 col-span-2">
                     <div className="space-y-1">
                     <Label htmlFor="title">Title</Label>
