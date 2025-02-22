@@ -30,18 +30,17 @@ export default function GridArticle () {
     <div className='flex-1 grid gap-4 place-items-center grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4'>
       <AnimatePresence mode="popLayout">
         {filteredArticle?.reverse().map((el:Article, index: number) => 
-          <motion.div
+            <motion.div
             key={el.id}
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.5, transition: { duration: 0.2 } }}
+            initial={{ opacity: 0, y: -1 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: index % 3 * 0.1 }}
+            exit={{ opacity: 0, y: -1, transition: { duration: 0.2 } }}
+            transition={{ delay: index % 6 * 0.15 }}
             viewport={{ once: true }}
             layout
-          >
+            >
             <ArticleCard article={el} />
-          </motion.div>
+            </motion.div>
         )}
       </AnimatePresence>
     </div>
