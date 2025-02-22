@@ -28,7 +28,13 @@ export default function GridArticle() {
       </div>
     );
 
-  if (error) return <div>Failed</div>;
+  if (error)
+    return (
+      <div className="flex flex-col items-center justify-center h-full">
+        <h2 className="text-2xl font-semibold text-red-600">Error Loading Articles</h2>
+        <p className="text-gray-600">There was an error fetching the articles. Please try again later.</p>
+      </div>
+    );
 
   let filteredArticle: Article[] = [];
   filteredArticle = listArticles?.filter(
@@ -46,7 +52,7 @@ export default function GridArticle() {
             initial={{ opacity: 0, y: -1 }}
             whileInView={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -1, transition: { duration: 0.2 } }}
-            transition={{ delay: (index % 6) * 0.15 }}
+            transition={{ delay: (index % 8) * 0.15 }}
             viewport={{ once: true }}
             layout
           >

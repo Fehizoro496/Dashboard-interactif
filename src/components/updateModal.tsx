@@ -52,19 +52,18 @@ const UpdateArticleModal = () => {
     }
 
     const onSubmit: SubmitHandler<ArticleFormData> = (data) => {
-        if (selectedArticle){
-                updateMutation.mutate({
-                    ...data, id: selectedArticle.id,
-                    rating: selectedArticle.rating
+        if (selectedArticle) {
+            updateMutation.mutate({
+            ...data, id: selectedArticle.id,
+            rating: selectedArticle.rating
             }, {
-                onSuccess: (returnedData:Article) => {
-                //   addArticleToList({...returnedData,id:listArticles.length+1});
-                updateArticle(returnedData)
-                console.log(listArticles)
+            onSuccess: (returnedData: Article) => {
+                updateArticle(returnedData);
+                console.log(listArticles);
                 handleClose();
                 // Show success notification
                 toast.success('Article updated successfully');
-                },
+            }
             });
         }
     };

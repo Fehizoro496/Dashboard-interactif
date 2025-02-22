@@ -31,7 +31,7 @@ import { toast } from "sonner";
             clearState();
             // Add toast notification
             toast.success(`"${variables.title}" has been deleted successfully.`);
-          },
+          }
         });
       }
     }

@@ -42,13 +42,13 @@ const AddArticleModal = () => {
     const onSubmit: SubmitHandler<ArticleFormData> = (data) => {
         addMutation.mutate(data, {
             onSuccess: (returnedData: Article) => {
-                addArticleToList({ ...returnedData, id: listArticles.length + 1 });
-                console.log(listArticles);
-                resetFilter();
-                toogleIsOpen();
-                reset();
-                toast.success('Article added successfully!');
-            },
+            addArticleToList({ ...returnedData, id: listArticles.length + 1 });
+            console.log(listArticles);
+            resetFilter();
+            toogleIsOpen();
+            reset();
+            toast.success('Article added successfully!');
+            }
         });
     };
 

@@ -24,7 +24,6 @@ export default function Home() {
   return (
     <QueryClientProvider client={queryClient}>
       <div className="h-screen flex flex-col">
-        <div className="w-full bg-primary text-primary-foreground py-5 text-center font-bold text-xl">Dashboard</div>
         
         <div id='top' className="relative flex flex-col flex-1 overflow-y-scroll pb-8 mx-8 sm:mx-auto">
 
