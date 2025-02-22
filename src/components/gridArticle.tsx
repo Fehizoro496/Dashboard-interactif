@@ -52,7 +52,7 @@ export default function GridArticle() {
             initial={{ opacity: 0, y: -1 }}
             whileInView={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -1, transition: { duration: 0.2 } }}
-            transition={{ delay: (index % 8) * 0.15 }}
+            transition={{ delay: 0.5}}
             viewport={{ once: true }}
             layout
           >
