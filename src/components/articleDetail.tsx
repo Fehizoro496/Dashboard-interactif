@@ -5,7 +5,6 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { useDialogStore } from "@/stores/dialogStore";
-import Article from "@/types/Article";
 import Image from "next/image";
 
 const ArticleDetailsDialog = () => {

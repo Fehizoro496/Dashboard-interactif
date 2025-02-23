@@ -45,22 +45,29 @@ export default function GridArticle() {
 
   return (
     <div className="col-span-8 grid gap-4 auto-rows-fr grid-cols-[repeat(auto-fit,minmax(280px,1fr))]">
+      {filteredArticle?.length === 0 ? (
+      <div className="flex flex-col items-center justify-center h-full col-span-full">
+        <h2 className="text-2xl font-semibold text-gray-600">No Articles Found</h2>
+        <p className="text-gray-600">Try adjusting your search or filter criteria.</p>
+      </div>
+      ) : (
       <AnimatePresence mode="popLayout">
         {filteredArticle?.reverse().map((el: Article) => (
-          <motion.div
-            key={el.id}
-            className="w-full h-full"
-            initial={{ opacity: 0, y: -1 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -1, transition: { duration: 0.2 } }}
-            transition={{ delay: 0.5}}
-            viewport={{ once: true }}
-            layout
-          >
-            <ArticleCard article={el} />
-          </motion.div>
+        <motion.div
+          key={el.id}
+          className="w-full h-full"
+          initial={{ opacity: 0, y: -1 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -1, transition: { duration: 0.2 } }}
+          transition={{ delay: 0.5 }}
+          viewport={{ once: true }}
+          layout
+        >
+          <ArticleCard article={el} />
+        </motion.div>
         ))}
       </AnimatePresence>
+      )}
     </div>
   );
 }
