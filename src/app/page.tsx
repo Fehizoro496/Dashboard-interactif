@@ -23,11 +23,9 @@ export default function Home() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="h-screen flex flex-col">
-        
-        <div id='top' className="relative flex flex-col flex-1 overflow-y-scroll pb-8 mx-8 sm:mx-auto">
+        <div id='top' className="relative grid grid-cols-8 flex-1 pb-8 px-8 ">
 
-          <div className="flex gap-4 items-center justify-between mt-4 flex-wrap">
+          <div className="col-span-8 flex gap-4 items-center justify-between mt-4 flex-wrap">
               <div className="text-xl sm:text-3xl font-bold ">My products</div>
               <Button className="font-bold" onClick={toogleIsOpen}>
                 <Plus/> Add product
@@ -49,7 +47,6 @@ export default function Home() {
           <Toaster/>
 
         </div>
-      </div>
     </QueryClientProvider>
   );
 }

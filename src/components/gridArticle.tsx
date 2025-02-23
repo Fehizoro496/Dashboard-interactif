@@ -19,9 +19,9 @@ export default function GridArticle() {
 
   if (isLoading)
     return (
-      <div className="flex-1 grid gap-4 place-items-center grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4">
+      <div className="col-span-8 grid gap-4 auto-rows-fr grid-cols-[repeat(auto-fit,minmax(280px,1fr))]">
         {[...Array(8)].map((_, index) => (
-          <div key={index}>
+          <div key={index} className="w-full h-full">
             <ArticleSkeleton />
           </div>
         ))}
@@ -44,11 +44,12 @@ export default function GridArticle() {
   );
 
   return (
-    <div className="flex-1 grid gap-4 place-items-center grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4">
+    <div className="col-span-8 grid gap-4 auto-rows-fr grid-cols-[repeat(auto-fit,minmax(280px,1fr))]">
       <AnimatePresence mode="popLayout">
-        {filteredArticle?.reverse().map((el: Article, index: number) => (
+        {filteredArticle?.reverse().map((el: Article) => (
           <motion.div
             key={el.id}
+            className="w-full h-full"
             initial={{ opacity: 0, y: -1 }}
             whileInView={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -1, transition: { duration: 0.2 } }}
