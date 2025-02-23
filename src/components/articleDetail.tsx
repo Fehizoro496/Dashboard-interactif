@@ -69,7 +69,7 @@ const ArticleDetailsDialog = () => {
           <h4 className="text-sm font-medium text-muted-foreground">
           Description
           </h4>
-          <p className="text-sm overflow-y-scroll">
+          <p className="text-sm">
           {selectedArticle?.description}
           </p>
         </div>
