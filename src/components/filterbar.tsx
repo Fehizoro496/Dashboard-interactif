@@ -13,7 +13,9 @@ export default function FilterBar(){
 
     const {searchQuerry,filterCategory,setFilterCategory,setSearchQuerry} = useFilterStore()
     
-    function handleSearchChange(e:React.ChangeEvent<HTMLInputElement>) { setSearchQuerry(e.target.value) }
+    function handleSearchChange(e:React.ChangeEvent<HTMLInputElement>) { 
+        setSearchQuerry(e.target.value || "") 
+    }
 
     return <div className="z-50 sticky top-0 flex gap-4 justify-between py-4 flex-wrap bg-white col-span-8">
         <div className="relative flex-1 cursor-text sm:min-w-72 ">
